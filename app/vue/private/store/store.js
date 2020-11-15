@@ -1,12 +1,13 @@
 import Vue from 'vue';
+import Vuex from 'vuex';
 
-//import scaffolds from './modules/scaffolds';
+import transactions from './modules/transactions';
 
 
 export default{
 
     modules: {
-        //scaffolds,
+        transactions
     }
 
 };

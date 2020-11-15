@@ -18,7 +18,11 @@ Vue.use(Vuex);
 Vue.use(VueRouter);
 Vue.prototype.$axios = axios;
 
-const store = new Vuex.Store({...store_public.modules, ...store_shared.modules,...store_private.modules});
+const store = new Vuex.Store({...store_public, ...store_shared,...store_private});
+
+
+
+console.log(store)
 
 const app = new Vue({
 
