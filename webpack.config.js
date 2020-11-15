@@ -6,12 +6,12 @@ module.exports = env => {
     const DE = require('dotenv').config({path: (env.NODE_ENV == 'production' ? './.env' : './.env.local')}).parsed;
     return {
         entry: {
-            app_private: './app/js/app.js'
+            app: './app/js/app.js'
         },
         mode: env.NODE_ENV,
         output: {
             path: __dirname + '/js/',
-            filename: '[name].js'
+            filename: '[name].min.js'
         },
         module: {
             rules: [
