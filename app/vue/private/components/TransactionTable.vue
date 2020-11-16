@@ -1,7 +1,5 @@
 <template>
-    <div class="container">
-
-        <table class="table table-striped">
+     <table class="table table-striped">
             <tr>
                 <td>Date</td>
                 <td>Type</td>
@@ -9,19 +7,13 @@
                 <td>Amount</td>
             </tr>
 
-            <transaction-row v-for="transaction in transactions"
+            <transaction-row v-for="transaction in allTransactions"
                              :transaction="transaction"
                              :key="transaction.id"
 
             ></transaction-row>
 
         </table>
-
-    </div>
-
-
-
-
 </template>
 
 <script>
@@ -43,8 +35,7 @@
         },
         computed: {
             ...mapGetters({
-                // map `this.doneCount` to `this.$store.getters.doneTodosCount`
-                transactions: 'transactions/allTransactions'
+                allTransactions: 'transactions/allTransactions'
             })
         }
 
