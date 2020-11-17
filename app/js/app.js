@@ -20,10 +20,6 @@ Vue.prototype.$axios = axios;
 
 const store = new Vuex.Store({...store_public, ...store_shared,...store_private});
 
-
-
-console.log(store)
-
 const app = new Vue({
 
     el:'#mainApp',

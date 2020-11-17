@@ -3,7 +3,7 @@
         <td>{{ transaction.date }}</td>
         <td>{{ getFriendlyTransactionType }}</td>
         <td>{{ transaction.description }}</td>
-        <td>{{ transaction.amount }}</td>
+        <td>{{ getTransactionDisplay }}</td>
     </tr>
 
 
@@ -35,6 +35,11 @@
 
             isCreditTransaction() {
                 return this.transaction.type == 'credit'
+            },
+
+            getTransactionDisplay() {
+                return (this.transaction.type == 'credit' ? "" : "-") +  Number(this.transaction.amount).toFixed(2);
+
             }
         }
 

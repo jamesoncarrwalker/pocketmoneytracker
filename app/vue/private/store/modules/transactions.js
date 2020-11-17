@@ -32,8 +32,11 @@ export default {
 
         getCreditTransactions: state => state.transactions.filter(transaction => transaction.type == 'credit'),
 
-        getDebitTransactions: state => state.transactions.filter(transaction => transaction.type == 'debit')
+        getDebitTransactions: state => state.transactions.filter(transaction => transaction.type == 'debit'),
 
+        getCreditTotal: state => state.transactions.reduce((total, transaction) => total + (transaction.type == 'credit' ? Number(transaction.amount) : 0),0),
+
+        getDebitTotal: state => state.transactions.reduce((total, transaction) => total + (transaction.type == 'debit' ? Number(transaction.amount) : 0),0)
 
         //result = words.filter(word => word.length > 6)
     },
