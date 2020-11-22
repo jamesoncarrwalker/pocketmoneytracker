@@ -42,10 +42,19 @@ export default {
     },
 
     actions: {
+        addTransaction({commit}, payload) {
+            console.log('PAYLOAD:: ', payload);
+            if(payload.id) {
+                commit('ADD_TRANSACTION',payload);
+            }
 
+        }
     },
 
     mutations: {
 
+        ADD_TRANSACTION(state, payload){
+            state.transactions.push(payload);
+        }
     }
 }

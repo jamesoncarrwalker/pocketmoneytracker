@@ -20,6 +20,13 @@
 
             </div>
 
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                <transaction-creator></transaction-creator>
+
+            </div>
+
+
         </div>
 
         <div v-if="!currentChild.id">
@@ -36,12 +43,14 @@
 <script>
     import TransactionTable from '../../private/components/TransactionTable.vue';
     import TransactionBalance from '../../private/components/TransactionBalance.vue';
+    import TransactionCreator from '../../private/components/TransactionCreator.vue';
     import { mapGetters } from 'vuex';
     export default {
 
         components: {
             TransactionTable,
-            TransactionBalance
+            TransactionBalance,
+            TransactionCreator
         },
 
         props: {
