@@ -1,8 +1,8 @@
 <template>
     <tr :class="isCreditTransaction ? 'success' : 'danger'">
-        <td>{{ transaction.date }}</td>
+        <td>{{ transaction.transaction_added }}</td>
         <td>{{ getFriendlyTransactionType }}</td>
-        <td>{{ transaction.description }}</td>
+        <td>{{ transaction.transaction_description }}</td>
         <td>{{ getTransactionDisplay }}</td>
     </tr>
 
@@ -34,11 +34,11 @@
             },
 
             isCreditTransaction() {
-                return this.transaction.type == 'credit'
+                return this.transaction.transaction_type == 'credit'
             },
 
             getTransactionDisplay() {
-                return (this.transaction.type == 'credit' ? "" : "-") +  Number(this.transaction.amount).toFixed(2);
+                return (this.transaction.transaction_type == 'credit' ? "" : "-") +  Number(this.transaction.transaction_amount).toFixed(2);
 
             }
         }

@@ -9,7 +9,7 @@
 
             <transaction-row v-for="transaction in allTransactions"
                              :transaction="transaction"
-                             :key="transaction.id"
+                             :key="transaction.UUID"
 
             ></transaction-row>
 
@@ -17,7 +17,7 @@
 </template>
 
 <script>
-    import { mapGetters } from 'vuex';
+    import { mapGetters, mapActions } from 'vuex';
     import TransactionRow from './TransactionRow.vue';
 
     export default {
@@ -31,8 +31,25 @@
         },
 
         methods: {
+            ...mapActions({
+                setTransactions: 'transactions/setTransactions'
+            }),
 
+            getTransactions() {
+                this.$axios
+                .get(env.API_URL + '/transactions')
+                .then(
+                    response => (
+                        this.setTransactions(response.data.transactions)
+                    )
+                ).catch(console.log('that went belly up buddy'))
+            }
         },
+
+        mounted(){
+            this.getTransactions();
+        },
+
         computed: {
             ...mapGetters({
                 allTransactions: 'transactions/allTransactions'

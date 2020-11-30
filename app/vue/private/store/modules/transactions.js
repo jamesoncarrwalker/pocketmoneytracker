@@ -1,27 +1,10 @@
+import moment from 'moment'
 export default {
     namespaced:true,
 
     state: {
         transactions: [
-            {
-                id: 1,
-                type: 'credit',
-                date: '15/11/2015',
-                amount: '2.50',
-                description: 'Did all your chores'
-            }, {
-                id: 2,
-                type: 'credit',
-                date: '8/11/2015',
-                amount: '2.50',
-                description: 'Did all your chores'
-            }, {
-                id:3,
-                type: 'debit',
-                date: '15/11/2015',
-                amount: '3.50',
-                description: 'Sparkle world magazine'
-            }
+
         ],
         lastUpdate:null
     },
@@ -30,24 +13,29 @@ export default {
 
         allTransactions: state => state.transactions,
 
-        getCreditTransactions: state => state.transactions.filter(transaction => transaction.type == 'credit'),
+        getCreditTransactions: state => state.transactions.filter(transaction => transaction.transaction_type == 'credit'),
 
-        getDebitTransactions: state => state.transactions.filter(transaction => transaction.type == 'debit'),
+        getDebitTransactions: state => state.transactions.filter(transaction => transaction.transaction_type == 'debit'),
 
-        getCreditTotal: state => state.transactions.reduce((total, transaction) => total + (transaction.type == 'credit' ? Number(transaction.amount) : 0),0),
+        getCreditTotal: state => state.transactions.reduce((total, transaction) => total + (transaction.transaction_type == 'credit' ? Number(transaction.transaction_amount) : 0),0),
 
-        getDebitTotal: state => state.transactions.reduce((total, transaction) => total + (transaction.type == 'debit' ? Number(transaction.amount) : 0),0)
+        getDebitTotal: state => state.transactions.reduce((total, transaction) => total + (transaction.transaction_type == 'debit' ? Number(transaction.transaction_amount) : 0),0)
 
         //result = words.filter(word => word.length > 6)
     },
 
     actions: {
         addTransaction({commit}, payload) {
-            console.log('PAYLOAD:: ', payload);
             if(payload.id) {
                 commit('ADD_TRANSACTION',payload);
             }
+        },
 
+        setTransactions({commit}, payload) {
+            if(payload.length > 0 && payload[0].UUID) {
+                commit('SET_TRANSACTIONS', payload);
+                commit('SET_TRANSACTIONS_UPDATED',new Date() | moment( "now"));
+            }
         }
     },
 
@@ -55,6 +43,14 @@ export default {
 
         ADD_TRANSACTION(state, payload){
             state.transactions.push(payload);
+        },
+
+        SET_TRANSACTIONS(state, payload) {
+            state.transactions = payload;
+        },
+
+        SET_TRANSACTIONS_UPDATED(state,payload) {
+            state.lastUpdate = payload;
         }
     }
 }

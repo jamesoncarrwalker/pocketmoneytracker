@@ -13,12 +13,12 @@ import store_private from '../vue/private/store/store';
 //globally register the common components
 import './global_register';
 
-Vue.use(require('vue-moment'));
 Vue.use(Vuex);
 Vue.use(VueRouter);
+Vue.use(require('vue-moment'));
 Vue.prototype.$axios = axios;
 
-const store = new Vuex.Store({...store_public, ...store_shared,...store_private});
+const store = new Vuex.Store({...store_public, ...store_shared, ...store_private});
 
 const app = new Vue({
 
