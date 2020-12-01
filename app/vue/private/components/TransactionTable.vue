@@ -7,7 +7,7 @@
                 <td>Amount</td>
             </tr>
 
-            <transaction-row v-for="transaction in allTransactions"
+            <transaction-row v-for="transaction in getOrderedTransactions"
                              :transaction="transaction"
                              :key="transaction.UUID"
 
@@ -52,7 +52,8 @@
 
         computed: {
             ...mapGetters({
-                allTransactions: 'transactions/allTransactions'
+                getOrderedTransactions: 'transactions/getOrderedTransactions',
+
             })
         }
 
