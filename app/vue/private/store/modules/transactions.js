@@ -21,12 +21,11 @@ export default {
 
         getDebitTotal: state => state.transactions.reduce((total, transaction) => total + (transaction.transaction_type == 'debit' ? Number(transaction.transaction_amount) : 0),0)
 
-        //result = words.filter(word => word.length > 6)
     },
 
     actions: {
         addTransaction({commit}, payload) {
-            if(payload.id) {
+            if(payload.UUID) {
                 commit('ADD_TRANSACTION',payload);
             }
         },

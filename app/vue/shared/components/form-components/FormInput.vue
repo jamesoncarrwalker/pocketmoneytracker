@@ -9,24 +9,19 @@
                :name="inputName"
                :id="getInputId"
                :autocomplete="autoComplete"
-               v-model="inputValue"
-               @keyup="onClickEmit"
-               @change="onClickEmit"
+               :value="inputValue"
+               @input="onInputEmit($event.target.value)"
                :placeholder="placeHolder"
         />
     </div>
 
 </template>
 
+</template>
 <script>
 
 
     export default {
-        data() {
-            return{
-                inputValue:''
-            }
-        },
         components: {
 
         },
@@ -64,10 +59,8 @@
                 type: String,
                 default: 'e.g. Lorem ipsum dorem latet'
             },
-            //this isn't going to work as it's in the data above for the v-model but we wnat to emit this value
-            defaultInputValue: {
-                type: String,
-                default: ''
+            inputValue: {
+                required:true
             },
             emitListener: {
                 type: String,
@@ -77,12 +70,12 @@
         },
 
         methods: {
-            onClickEmit() {
-                if(this.emitListener == '') {
+            onInputEmit(emitValue) {
+                if(this.emitListener == '' || typeof this.emitListener == 'undefined') {
                     return;
                 }
 
-                this.$emit('update:' + this.emitListener, this.inputValue);
+                this.$emit('update:' + this.emitListener, emitValue);
 
             }
         },

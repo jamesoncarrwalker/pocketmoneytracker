@@ -1,7 +1,7 @@
 <template>
     <div class="container">
 
-        <form-input :deafultInputValue="transactionAmount"
+        <form-input :inputValue="transactionAmount"
                     placeHolder="e.g 1.50"
                     :transactionAmount.sync="transactionAmount"
                     input-name="transactionAmount"
@@ -11,7 +11,7 @@
                     inputLabel="Amount"
         ></form-input>
 
-        <form-input :deafultInputValue="transactionDescription"
+        <form-input :inputValue="getTransactionDescription"
                     placeHolder="e.g did all your chores..."
                     :transactionDescription.sync="transactionDescription"
                     input-name="transactionDescription"
@@ -71,6 +71,14 @@
                 return this.transactionType;
             },
 
+            getTransactionAmount() {
+                return this.transactionAmount > 0 ? this.transactionAmount : "";
+            },
+
+            getTransactionDescription() {
+                return this.transactionDescription;
+            },
+
             getTransactionPayload() {
                 if(this.transactionType == '' || this.transactionDescription == '' || this.transactionAmount == 0) {
                     return {
@@ -83,13 +91,12 @@
                         error: 'Please don\'t use negative amounts.'
                     }
                 }
-                return {
-                    id: Math.random(),
-                    type: this.transactionType,
-                    date: 'DD/MM/YYYY',
-                    amount: this.transactionAmount,
-                    description: this.transactionDescription
-                };
+
+                const payload = new FormData();
+                payload.append('transaction_type', this.transactionType);
+                payload.append('transaction_amount', this.transactionAmount);
+                payload.append('transaction_description', this.transactionDescription);
+                return payload;
             }
         },
 
@@ -134,12 +141,14 @@
                         this.submitTransaction = '';
                         return;
                     }
-                    //axios.submitToApi
-                    //axios.then =>
-                    this.addTransaction(payload);
-                    this.submitTransaction = ''
-                    this.resetData();
-
+                    this.$axios
+                        .post(env.API_URL + '/transactions',payload,{'Content-Type': 'multipart/form-data' })
+                        .then(
+                            response => (
+                                this.addTransaction(response.data.transaction),
+                                this.resetData()
+                            )
+                        )
                 }
                 this.submitTransaction = ''
             }
