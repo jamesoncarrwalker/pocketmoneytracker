@@ -37,11 +37,11 @@
             },
 
             isCreditTransaction() {
-                return this.transaction.transaction_type == 'credit'
+                return this.transaction.transaction_type == 'CREDIT'
             },
 
             getTransactionDisplay() {
-                return (this.transaction.transaction_type == 'credit' ? "" : "-") +  Number(this.transaction.transaction_amount).toFixed(2);
+                return (this.transaction.transaction_type == 'CREDIT' ? "" : "-") +  Number(this.transaction.transaction_amount).toFixed(2);
 
             }
         }

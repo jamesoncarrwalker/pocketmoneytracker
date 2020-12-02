@@ -5,10 +5,6 @@ export default {
 
         children: [
 
-            {
-                id: 1,
-                name: 'James'
-            }
 
         ],
 

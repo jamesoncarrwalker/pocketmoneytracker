@@ -24,17 +24,17 @@
         <action-button
                       button-value="Credit"
                       input-classes="button btn btn-sm "
-                      :button-is-active="getTransactionType == 'credit'"
+                      :button-is-active="getTransactionType == 'CREDIT'"
                       :transactionType.sync="transactionType"
-                      emit-value="credit"
+                      emit-value="CREDIT"
                       emit-listener="transactionType"
         ></action-button>
 
         <action-button
                        input-classes="button btn btn-sm "
-                       :button-is-active="getTransactionType == 'spend'"
+                       :button-is-active="getTransactionType == 'SPEND'"
                        button-value="Spend"
-                       emit-value="spend"
+                       emit-value="SPEND"
                        emit-listener="transactionType"
                        :transactionType.sync="transactionType"
         ></action-button>
@@ -111,7 +111,7 @@
             resetData() {
                 this.transactionAmount = 0,
                 this.transactionDescription = '',
-                this.transactionType = 'credit',
+                this.transactionType = 'CREDIT',
                 this.submitTransaction = ''
             }
         },
@@ -120,7 +120,7 @@
             return {
                 transactionAmount:0,
                 transactionDescription: '',
-                transactionType: 'credit',
+                transactionType: 'CREDIT',
                 submitTransaction: '',
                 errorMessage: ''
 

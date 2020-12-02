@@ -13,13 +13,13 @@ export default {
 
         allTransactions: state => state.transactions,
 
-        getCreditTransactions: state => state.transactions.filter(transaction => transaction.transaction_type == 'credit'),
+        getCreditTransactions: state => state.transactions.filter(transaction => transaction.transaction_type == 'CREDIT'),
 
-        getDebitTransactions: state => state.transactions.filter(transaction => transaction.transaction_type == 'spend'),
+        getDebitTransactions: state => state.transactions.filter(transaction => transaction.transaction_type == 'SPEND'),
 
-        getCreditTotal: state => state.transactions.reduce((total, transaction) => total + (transaction.transaction_type == 'credit' ? Number(transaction.transaction_amount) : 0),0),
+        getCreditTotal: state => state.transactions.reduce((total, transaction) => total + (transaction.transaction_type == 'CREDIT' ? Number(transaction.transaction_amount) : 0),0),
 
-        getDebitTotal: state => state.transactions.reduce((total, transaction) => total + (transaction.transaction_type == 'spend' ? Number(transaction.transaction_amount) : 0),0),
+        getDebitTotal: state => state.transactions.reduce((total, transaction) => total + (transaction.transaction_type == 'SPEND' ? Number(transaction.transaction_amount) : 0),0),
 
         getOrderedTransactions: state => state.transactions.sort((a,b) => (new Date(b.transaction_added) - new Date(a.transaction_added) ))
 
