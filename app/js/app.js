@@ -9,14 +9,17 @@ import store_public from '../vue/public/store/store';
 import store_private from '../vue/private/store/store';
 
 
+import Moment from 'moment'
+Moment.locale('en')
+
 
 //globally register the common components
 import './global_register';
 
 Vue.use(Vuex);
 Vue.use(VueRouter);
-Vue.use(require('vue-moment'));
 Vue.prototype.$axios = axios;
+Vue.prototype.$moment = Moment;
 
 const store = new Vuex.Store({...store_public, ...store_shared, ...store_private});
 

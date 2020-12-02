@@ -34,7 +34,7 @@
         computed: {
 
             getFriendlyDate() {
-                return moment(String(this.transaction.transaction_added)).format('dddd Do MMMM');
+                return this.$moment(String(this.transaction.transaction_added)).format('dddd Do MMMM');
             },
 
             getFriendlyTransactionType() {
