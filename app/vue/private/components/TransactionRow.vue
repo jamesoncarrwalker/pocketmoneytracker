@@ -1,5 +1,8 @@
 <template>
-    <tr :class="isCreditTransaction ? 'success' : 'danger'">
+
+    <tr
+        :class="isCreditTransaction ? 'credit' : 'spend'"
+    >
         <td>{{ transaction.transaction_added }}</td>
         <td>{{ getFriendlyTransactionType }}</td>
         <td>{{ transaction.transaction_description }}</td>

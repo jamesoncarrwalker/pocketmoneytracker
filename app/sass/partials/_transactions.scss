@@ -1,0 +1,29 @@
+.remaining-balance-container {
+  border-radius: 4px;
+  padding: 8px;
+  color: $colorMainFont;
+  border-style: none none solid none;
+
+  &.credit {
+    color: $colorMainGreen;
+    border-color: $colorMainGreen;
+  }
+
+  &.spend {
+    color: $colorMainRed;
+    border-color: 1px solid $colorMainRed;
+  }
+}
+
+
+.transaction-table tr {
+  &.spend {
+    background-color: $colorLightPink;
+    color: $colorMainRed;
+  }
+
+  &.credit {
+    background-color: $colorLightGreen;
+    color: $colorMainGreen;
+  }
+}

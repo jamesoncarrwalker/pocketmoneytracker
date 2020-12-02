@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
         <form-input :inputValue="transactionAmount"
                     placeHolder="e.g 1.50"
@@ -23,14 +23,16 @@
 
         <action-button
                       button-value="Credit"
-                      :input-classes="['button', 'btn', 'btn-sm',getTransactionType == 'credit' ? 'active' : '']"
+                      input-classes="button btn btn-sm "
+                      :button-is-active="getTransactionType == 'credit'"
                       :transactionType.sync="transactionType"
                       emit-value="credit"
                       emit-listener="transactionType"
         ></action-button>
 
         <action-button
-                       :input-classes="['button', 'btn', 'btn-sm',getTransactionType == 'spend' ? 'active' : '']"
+                       input-classes="button btn btn-sm "
+                       :button-is-active="getTransactionType == 'spend'"
                        button-value="Spend"
                        emit-value="spend"
                        emit-listener="transactionType"
@@ -38,7 +40,7 @@
         ></action-button>
 
         <action-button
-                       :input-classes="['button', 'btn', 'btn-sm']"
+                       input-classes="button btn btn-sm pull-right submit"
                        button-value="Save"
                        emit-value="submitting"
                        emit-listener="saveTransaction"

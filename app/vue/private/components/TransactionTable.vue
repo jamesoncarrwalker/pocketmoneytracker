@@ -1,19 +1,24 @@
 <template>
-     <table class="table table-striped">
-            <tr>
-                <td>Date</td>
-                <td>Type</td>
-                <td>Description</td>
-                <td>Amount</td>
-            </tr>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <table class="table table-bordered transaction-table">
+            <tbody>
+                <tr>
+                    <td>Date</td>
+                    <td>Type</td>
+                    <td>Description</td>
+                    <td>Amount</td>
+                </tr>
+                <transaction-row v-for="transaction in getOrderedTransactions"
+                                 :transaction="transaction"
+                                 :key="transaction.UUID"
 
-            <transaction-row v-for="transaction in getOrderedTransactions"
-                             :transaction="transaction"
-                             :key="transaction.UUID"
+                ></transaction-row>
+            </tbody>
 
-            ></transaction-row>
 
         </table>
+    </div>
+
 </template>
 
 <script>

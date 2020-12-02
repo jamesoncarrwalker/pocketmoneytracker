@@ -2,6 +2,8 @@
 
     <button type="button"
             @click="onClickEmit"
+            class="action-button"
+            :class="[inputClasses, (buttonIsActive ? 'active-button' : '')]"
 
     >{{ buttonValue }}</button>
 
@@ -23,8 +25,8 @@
             },
 
             inputClasses: {
-                type: Array,
-                default: []
+                type: String,
+                default: ""
             },
 
             emitListener: {
@@ -35,7 +37,13 @@
             emitValue: {
                 type: String,
                 default: ''
+            },
+
+            buttonIsActive: {
+                type: Boolean,
+                default: false
             }
+
 
         },
 

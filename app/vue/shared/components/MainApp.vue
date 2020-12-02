@@ -1,9 +1,12 @@
 <template>
-    <div class="container-fluid">
 
-        <div class="row">
+    <div class="main-app">
 
-            <div class="container router-view-container">
+        <tracker-header class="tracker-header hand-written"></tracker-header>
+
+        <div class="container-fluid">
+
+            <div class="row router-container">
 
                 <router-view></router-view>
 
@@ -12,6 +15,8 @@
         </div>
 
     </div>
+
+
 
 
 </template>

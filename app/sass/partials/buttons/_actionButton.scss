@@ -1,0 +1,14 @@
+.action-button {
+  background-color: transparent;
+  color: $colorMainGreen;
+  border: 1px solid $colorMainGreen;
+
+  transition: background-color 150ms, color 150ms, border 150ms;
+
+  &:hover, &.active-button {
+    background-color: $colorMainGreen;
+    color:$colorMainWhite;
+  }
+
+}
+

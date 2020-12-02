@@ -1,8 +1,8 @@
 <template>
 
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 ">
 
-        <h5 class="pull-right">Current balance: <span :class="getBalanceClass">{{ getBalanceDisplay }}</span></h5>
+        <h5 class="pull-right remaining-balance-container"  :class="getBalanceClass">How much I have left: £<span class="remaining-balance">{{ getBalanceDisplay }}</span></h5>
 
     </div>
 
@@ -37,7 +37,7 @@
 
             getBalanceClass() {
                 const balance = this.getBalance;
-                return balance < 0 ? 'debt' : (balance == 0 ? '' : 'credit')
+                return balance < 0 ? 'spend' : (balance == 0 ? '' : 'credit')
             },
 
             getBalanceDisplay() {
