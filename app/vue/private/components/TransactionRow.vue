@@ -3,7 +3,7 @@
     <tr
         :class="isCreditTransaction ? 'credit' : 'spend'"
     >
-        <td>{{ transaction.transaction_added }}</td>
+        <td>{{ getFriendlyDate }}</td>
         <td>{{ getFriendlyTransactionType }}</td>
         <td>{{ transaction.transaction_description }}</td>
         <td>{{ getTransactionDisplay }}</td>
@@ -32,6 +32,11 @@
         },
 
         computed: {
+
+            getFriendlyDate() {
+                return moment(String(this.transaction.transaction_added)).format('dddd Do MMMM');
+            },
+
             getFriendlyTransactionType() {
                 return this.isCreditTransaction ? 'Earned' : 'Spent';
             },
