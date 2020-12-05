@@ -2,32 +2,56 @@
     <div class="container-fluid tracker-page">
 
         <div  class="row">
-            <div class="container">
-                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                    {{ getNameToDisplay }}
-                </div>
 
-                <transaction-balance></transaction-balance>
-
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                {{ getNameToDisplay }}
             </div>
 
+            <transaction-balance></transaction-balance>
 
         </div>
 
         <div  class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul  class="nav nav-tabs list-inline">
 
-            <div class="container">
+                    <navigation-tab
+                            title="Tracker"
+                            emit-value="tracker"
+                            emit-listener="setTrackerTab"
+                            :setTrackerTab.sync="activeTab"
+                            :active="(activeTab == 'tracker')"
+                    ></navigation-tab>
 
-                <transaction-table></transaction-table>
+                    <navigation-tab
+                            title="Add transaction"
+                            emit-value="form"
+                            emit-listener="setTrackerTab"
+                            :setTrackerTab.sync="activeTab"
+                            :active="(activeTab != 'tracker')"
+                    ></navigation-tab>
+
+                </ul>
+            </div>
+
+        </div>
+
+
+
+
+        <div class="row">
+
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 tracker-tab-container" v-if=" (activeTab == 'tracker') ">
+
+                <transaction-table ></transaction-table>
 
             </div>
 
-            <div class="container">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 tracker-tab-container" v-else>
 
                 <transaction-creator></transaction-creator>
 
             </div>
-
 
         </div>
 
@@ -42,6 +66,12 @@
     import { mapGetters } from 'vuex';
     export default {
 
+        data() {
+            return {
+                activeTab: 'tracker'
+            }
+        },
+
         components: {
             TransactionTable,
             TransactionBalance,
@@ -53,7 +83,9 @@
         },
 
         methods: {
-
+            setActiveTab(newTab) {
+                this.activeTab = newTab;
+            }
         },
         computed: {
             ...mapGetters({

@@ -1,32 +1,22 @@
 <template>
 
-    <button type="button"
-            @click="onClickEmit"
-            class="action-button"
-            :class="[inputClasses, (buttonIsActive ? 'active-button' : '')]"
+    <li    @click="onClickEmit"
+            :class="getActiveClass"
+            >
+        <a href="#">{{ title }}</a>
 
-    >{{ buttonValue }}</button>
+    </li>
+
 
 </template>
 
 <script>
 
     export default {
-        data() {
-            return{
-                radioButtonValue:''
-            }
-        },
         props: {
-
-            buttonValue: {
+            title:{
                 type: String,
                 required: true
-            },
-
-            inputClasses: {
-                type: String,
-                default: ""
             },
 
             emitListener: {
@@ -38,21 +28,22 @@
                 type: String,
                 default: ''
             },
-
-            buttonIsActive: {
+            active: {
                 type: Boolean,
-                default: false
+                default:false
             }
-
-
         },
 
         computed: {
-
+            getActiveClass() {
+                return this.active ? ' active ' : '';
+            }
         },
 
         methods: {
+
             onClickEmit() {
+
                 if(this.emitValue == '' || this.emitListener == '') {
                     return;
                 }
@@ -61,7 +52,6 @@
 
             }
         }
-
     }
 
 </script>
